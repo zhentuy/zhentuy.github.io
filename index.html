@@ -9,7 +9,10 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content=" My First Jeklly Page ">
+  <meta name="description" content="块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
+和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
+需要转意的字符 “<“ ”&“ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +74,171 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/12/21/markdown-note/">Markdown Note</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-21T05:34:26-08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
+和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
+需要转意的字符 “<“ ”&“  md回自动转移，或者不转 code 范围内除外
+code 范围内，不论是行内还是区块， < 和 & 两个符号都一定会被转换成 HTML 实体，
+一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
+段内强迫换行在插入处先按入两个以上的空格然后回车
+
+强制  
+换行
+============
+bb
+--------
+</div>
+
+
+<p><em>在 HTML 区块标签间的 Markdown 格式语法将不会被处理</em>
+一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
+强制<br/>
+换行</p>
+
+<p>============</p>
+
+<h2>bb</h2>
+
+<h1>1</h1>
+
+<h2>2</h2>
+
+<h3>3</h3>
+
+<h4>4</h4>
+
+<h5>5</h5>
+
+<h6>6</h6>
+
+<h1>块引用：</h1>
+
+<blockquote><p>这是一块
+折行第二行</p>
+
+<p>second  no fold
+next line</p>
+
+<blockquote><p>nested
+引用的区块内也可以使用其他的 Markdown 语法</p>
+
+<h2>H2</h2>
+
+<p>code:</p></blockquote>
+
+<p> print &ldquo;tanky woo is sb&rdquo;</p></blockquote>
+
+<p>无序列表使用星号、加号或是减号作为列表标记：</p>
+
+<ul>
+<li>1
+-2
+-3</li>
+<li>4</li>
+</ul>
+
+
+<p>有序列表则使用数字接着一个英文句点：
+1. 1
+2. 2
+3.3</p>
+
+<ol>
+<li> 这是一段PA
+PA第二行</li>
+<li>PB
+PB第二行</li>
+</ol>
+
+
+<h3>带段落的列表</h3>
+
+<ul>
+<li><p>段落</p>
+
+<p>中断</p>
+
+<p>后段</p></li>
+<li><p>第二段
+    print &lsquo;wulei chaotang&rsquo;</p></li>
+</ul>
+
+
+<p>代码段</p>
+
+<pre><code>def soeasy():
+    return 0
+</code></pre>
+
+<p>   <div class="footer"></p>
+
+<pre><code>       &amp;copy; 2004 Foo Corporation
+</code></pre>
+
+<p>   </div></p>
+
+<p> 分割线</p>
+
+<hr />
+
+<p>代码块中一般的markdown语法不会被转换</p>
+
+<p><a href="http://www.163.com" title="title">这是一个链接</a>指向163</p>
+
+<p><a href="http://zhentuy.github.io/" title="github博客地址">用变量定义的连接</a></p>
+
+<p><strong><a href="http://zhentuy.github.io/" title="github博客地址">myblog</a> 隐式连接就是省略了链接字符</strong>
+*<strong>aa</strong>
+<code>`print abc</code>d<code>``
+A single backtick in a code span:</code> ` &#8220;</p>
+
+<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
+
+<div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+</div>
+
+
+<div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/12/16/test/">Test</a></h1>
     
     
@@ -114,6 +282,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/21/markdown-note/">Markdown Note</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/12/16/test/">Test</a>
