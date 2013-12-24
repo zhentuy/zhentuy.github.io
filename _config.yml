@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://zhentuy.github.io
-title: Zhu note 
-subtitle: 
+title: Zhu
+subtitle: Experence Worth to Record 
 author: zhuhaipeng
 simple_search: http://google.com/search
-description: simple tech blog
+description: tech blog
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -65,11 +65,11 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # Github repositories
 github_user: zhentuy
 github_repo_count: 0
-github_show_profile_link: true
+github_show_profile_link: false
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: zhentuy
 twitter_tweet_button: true
 
 # Google +1
