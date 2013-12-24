@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2013-12-24T08:31:51-08:00</updated>
+  <updated>2013-12-24T08:48:11-08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -65,13 +65,14 @@ bb
 next line</p>
 
 <blockquote><p>nested
-引用的区块内也可以使用其他的 Markdown 语法</p>
+引用的区块内也可以使用其他的 Markdown 语法</p></blockquote>
 
 <h2>H2</h2>
 
-<p>code:</p></blockquote>
+<p>code:</p>
 
-<p> print &ldquo;tanky woo is sb&rdquo;</p></blockquote>
+<pre><code>print "tanky woo is sb"
+</code></pre></blockquote>
 
 <p>无序列表使用星号、加号或是减号作为列表标记：</p>
 
@@ -117,10 +118,15 @@ PB第二行</li>
 
 <p>   <div class="footer"></p>
 
-<pre><code>       &amp;copy; 2004 Foo Corporation
+<pre><code>   &amp;copy; 2004 Foo Corporation
 </code></pre>
 
 <p>   </div></p>
+
+<pre><code>   &lt;div class="footer"&gt;
+       &amp;copy; 2004 Foo Corporation
+   &lt;/div&gt;
+</code></pre>
 
 <p> 分割线</p>
 
