@@ -46,10 +46,10 @@ bb
 > next line
 >> nested
 >引用的区块内也可以使用其他的 Markdown 语法
+
 >## H2
 >code:
->
->  print "tanky woo is sb"
+>     print "tanky woo is sb"
 
 无序列表使用星号、加号或是减号作为列表标记：
 
@@ -83,8 +83,12 @@ PB第二行
         return 0
 
    <div class="footer">
-           &copy; 2004 Foo Corporation
+       &copy; 2004 Foo Corporation
    </div>
+       <div class="footer">
+           &copy; 2004 Foo Corporation
+       </div>
+
 
  分割线
  - - - 
