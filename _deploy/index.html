@@ -9,10 +9,12 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
-*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
-和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
-需要转意的字符 “<“ ”&“ &hellip;">
+  <meta name="description" content=" layout: post
+title: &ldquo;hello&rdquo;
+date: 2013-12-16 08:25:26 -0800
+comments: true categories: &mdash; test on work &mdash;
+">
+  
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -188,7 +190,6 @@ bb
 next line</p>
 
 <blockquote><p>nested
-<<<<<<< HEAD
 引用的区块内也可以使用其他的 Markdown 语法</p></blockquote>
 
 <h2>H2</h2>
@@ -197,15 +198,6 @@ next line</p>
 
 <pre><code>print "tanky woo is sb"
 </code></pre></blockquote>
-=======
-引用的区块内也可以使用其他的 Markdown 语法</p>
-
-<h2>H2</h2>
-
-<p>code:</p></blockquote>
-
-<p> print &ldquo;tanky woo is sb&rdquo;</p></blockquote>
->>>>>>> d47fed535dd256c1805f361123a0f00c52f94fa9
 
 <p>无序列表使用星号、加号或是减号作为列表标记：</p>
 
@@ -251,7 +243,7 @@ PB第二行</li>
 
 <p>   <div class="footer"></p>
 
-<pre><code>       &amp;copy; 2004 Foo Corporation
+<pre><code>   &amp;copy; 2004 Foo Corporation
 </code></pre>
 
 <p>   </div></p>
@@ -351,6 +343,7 @@ A single backtick in a code span:</code> ` &#8220;</p>
         <a href="/blog/2013/12/21/markdown-note/">Markdown Note</a>
       </li>
     
+      <li class="post">
         <a href="/blog/2013/12/17/test/">Test</a>
       </li>
     

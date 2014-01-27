@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2013-12-24T08:48:11-08:00</updated>
+  <updated>2014-01-27T14:58:31+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -14,9 +14,27 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Test on Work Please]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/01/26/test-on-work-please/"/>
+    <updated>2014-01-26T00:00:00+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/01/26/test-on-work-please</id>
+    <content type="html"><![CDATA[<hr />
+
+<p>layout: post
+title: &ldquo;hello&rdquo;
+date: 2013-12-16 08:25:26 -0800
+comments: true</p>
+
+<h2>categories: </h2>
+
+<p>&mdash; test on work &mdash;</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Markdown Note]]></title>
     <link href="http://zhentuy.github.io/blog/2013/12/21/markdown-note/"/>
-    <updated>2013-12-21T05:34:26-08:00</updated>
+    <updated>2013-12-21T21:34:26+08:00</updated>
     <id>http://zhentuy.github.io/blog/2013/12/21/markdown-note</id>
     <content type="html"><![CDATA[<div>
 块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
@@ -159,9 +177,9 @@ A single backtick in a code span:</code> ` &#8220;</p>
   
   <entry>
     <title type="html"><![CDATA[Test]]></title>
-    <link href="http://zhentuy.github.io/blog/2013/12/16/test/"/>
-    <updated>2013-12-16T08:25:26-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2013/12/16/test</id>
+    <link href="http://zhentuy.github.io/blog/2013/12/17/test/"/>
+    <updated>2013-12-17T00:25:26+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/17/test</id>
     <content type="html"><![CDATA[<h2> My First Jeklly Page </h2>
 
 ]]></content>
