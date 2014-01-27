@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-01-27T14:58:31+08:00</updated>
+  <updated>2014-01-27T15:16:34+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wxh]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/01/27/wxh/"/>
+    <updated>2014-01-27T15:13:46+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/01/27/wxh</id>
+    <content type="html"><![CDATA[<p>  把原始_deploy放入git pull 到想保存编辑环境的地方。就可以用rake deploy 了</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Test on Work Please]]></title>
