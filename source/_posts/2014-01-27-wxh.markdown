@@ -3,7 +3,9 @@ layout: post
 title: "wxh"
 date: 2014-01-27 15:13:46 +0800
 comments: true
+footer: true
 categories: 
 ---
+<!-- more -->
 
   把原始_deploy放入git pull 到想保存编辑环境的地方。就可以用rake deploy 了
