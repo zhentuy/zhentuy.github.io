@@ -3,10 +3,13 @@ layout: post
 title: "markdown note"
 date: 2013-12-21 05:34:26 -0800
 comments: true
+published: false
 categories: 
 ---
 
 MD 是一种书写语言，HTML是一种表现语言。
+Markdown 的理念是，能让文档更容易读、写和随意改
+
 <div>
 块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
 *在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
@@ -79,7 +82,7 @@ PB第二行
 *   第二段
         print 'wulei chaotang'
 
-代码段
+代码段: 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以
     def soeasy():
         return 0
 
