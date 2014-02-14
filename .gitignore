@@ -1,5 +1,5 @@
 .bundle
-.swp
+*.swp
 .DS_Store
 .sass-cache
 .gist-cache
