@@ -6,7 +6,7 @@ sharing: true
 footer: true
 ---
 
-Zhu Haipeng is a python developer. Focusing on web now.
+Zhu Haipeng is a python developer.
 
 Work on [Five Star Club](http://www.wuxinghui.com '五星汇').
 

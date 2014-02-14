@@ -106,3 +106,6 @@ duoshuo_short_name: zhuhaipeng
 #weibo comments
 weibo_uid: 2358346817
 weibo_verifier: 1ccfb61e
+
+#baidufenxiang
+baidu_share: true
