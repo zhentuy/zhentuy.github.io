@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zhu</title>
+  <title>Markdown Note - Zhu</title>
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="在我窝里搭建好octopress的写作环境后，想在我工作场地也能随时写。
-于是把本地博客repo的sourse分支push到github上，以为在公司pull下来就能用了。 在公司机器上要装好octopress后，把博客repo的sourse分支pull到本地， rake new_post[' &hellip;">
+  <meta name="description" content="块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
+和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
+需要转意的字符 “<“ ”&“ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhentuy.github.io">
+  <link rel="canonical" href="http://zhentuy.github.io/blog/2013/12/21/markdown-note">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zhu" type="application/atom+xml">
@@ -64,117 +66,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing/">用octopress在github搭建博客后，如何在多台机器上部署“写作”环境</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-17T07:38:48-08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在我窝里搭建好octopress的写作环境后，想在我工作场地也能随时写。
-于是把本地博客repo的sourse分支push到github上，以为在公司pull下来就能用了。</p>
-
-<p>在公司机器上要装好octopress后，把博客repo的sourse分支pull到本地，</p>
-
-<pre><code>rake new_post['test']
-</code></pre>
-
-<p>报错，说没有<em>deploy 目录。 新建一个</em>deploy 目录还是报错。回家后看到octopress的.gitignore 里面有deploy。
-删除掉，push。到公司pull下来，继续rake，还是报错。</p>
-
-<p>这时候想起来octopress的文档</p>
-
-<blockquote><p>Ask for and store your Github Pages repository url.
-Rename the remote pointing to imathis/octopress from &lsquo;origin&rsquo; to &lsquo;octopress&rsquo;
-Add your Github Pages repository as the default origin remote.
-Switch the active branch from master to source.
-Configure your blog&rsquo;s url according to your repository.
-Setup a master branch in the _deploy directory for deployment.</p></blockquote>
-
-<p><em>deploy目录下有独立的git目录，里面的.git文件不会被push到github上。回家开VPN，把</em>deploy目录下的.git
-scp 到工作用机器上，rake new_post[&lsquo;test&rsquo;]成功</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/26/test-on-work-please/">Test on Work Please</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-26T00:00:00-08:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><hr />
-
-<p>layout: post
-title: &ldquo;hello&rdquo;
-date: 2013-12-16 08:25:26 -0800
-comments: true</p>
-
-<h2>categories: </h2>
-
-<p>&mdash; test on work &mdash;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/21/markdown-note/">Markdown Note</a></h1>
+      <h1 class="entry-title">Markdown Note</h1>
     
     
       <p class="meta">
@@ -197,7 +94,7 @@ comments: true</p>
   </header>
 
 
-  <div class="entry-content"><div>
+<div class="entry-content"><div>
 块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
 *在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
 和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
@@ -334,22 +231,16 @@ A single backtick in a code span:</code> ` &#8220;</p>
 </div>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/16/test/">Test</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">zhuhaipeng</span></span>
+
+      
 
 
 
@@ -361,28 +252,34 @@ A single backtick in a code span:</code> ` &#8220;</p>
   
 
 
-<time datetime="2013-12-16T08:25:26-08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-12-21T05:34:26-08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2013</time>
+      
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2013/12/21/markdown-note/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2013/12/21/markdown-note/" >Tweet</a>
+  
+  
+  
+</div>
 
-
-  <div class="entry-content"><h2> My First Jeklly Page </h2>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/12/16/test/" title="Previous Post: test">&laquo; test</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/01/26/test-on-work-please/" title="Next Post: Test On Work Please">Test On Work Please &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -411,7 +308,7 @@ A single backtick in a code span:</code> ` &#8220;</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <script type="text/javascript">
@@ -441,6 +338,7 @@ A single backtick in a code span:</code> ` &#8220;</p>
 
   
 </aside>
+
 
     </div>
   </div>

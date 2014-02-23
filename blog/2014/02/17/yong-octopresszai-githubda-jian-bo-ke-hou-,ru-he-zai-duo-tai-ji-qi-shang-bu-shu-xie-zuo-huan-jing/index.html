@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zhu</title>
+  <title>用octopress在github搭建博客后，如何在多台机器上部署“写作”环境 - Zhu</title>
   <meta name="author" content="zhuhaipeng">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhentuy.github.io">
+  <link rel="canonical" href="http://zhentuy.github.io/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zhu" type="application/atom+xml">
@@ -64,15 +64,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing/">用octopress在github搭建博客后，如何在多台机器上部署“写作”环境</a></h1>
+      <h1 class="entry-title">用octopress在github搭建博客后，如何在多台机器上部署“写作”环境</h1>
     
     
       <p class="meta">
@@ -95,7 +92,7 @@
   </header>
 
 
-  <div class="entry-content"><p>在我窝里搭建好octopress的写作环境后，想在我工作场地也能随时写。
+<div class="entry-content"><p>在我窝里搭建好octopress的写作环境后，想在我工作场地也能随时写。
 于是把本地博客repo的sourse分支push到github上，以为在公司pull下来就能用了。</p>
 
 <p>在公司机器上要装好octopress后，把博客repo的sourse分支pull到本地，</p>
@@ -118,67 +115,16 @@ Setup a master branch in the _deploy directory for deployment.</p></blockquote>
 <p><em>deploy目录下有独立的git目录，里面的.git文件不会被push到github上。回家开VPN，把</em>deploy目录下的.git
 scp 到工作用机器上，rake new_post[&lsquo;test&rsquo;]成功</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/26/test-on-work-please/">Test on Work Please</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">zhuhaipeng</span></span>
 
-<time datetime="2014-01-26T00:00:00-08:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><hr />
-
-<p>layout: post
-title: &ldquo;hello&rdquo;
-date: 2013-12-16 08:25:26 -0800
-comments: true</p>
-
-<h2>categories: </h2>
-
-<p>&mdash; test on work &mdash;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/21/markdown-note/">Markdown Note</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -190,199 +136,32 @@ comments: true</p>
   
 
 
-<time datetime="2013-12-21T05:34:26-08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div>
-块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
-*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
-和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
-需要转意的字符 “<“ ”&“  md回自动转移，或者不转 code 范围内除外
-code 范围内，不论是行内还是区块， < 和 & 两个符号都一定会被转换成 HTML 实体，
-一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
-段内强迫换行在插入处先按入两个以上的空格然后回车
-
-强制  
-换行
-============
-bb
---------
-</div>
-
-
-<p><em>在 HTML 区块标签间的 Markdown 格式语法将不会被处理</em>
-一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
-强制<br/>
-换行</p>
-
-<p>============</p>
-
-<h2>bb</h2>
-
-<h1>1</h1>
-
-<h2>2</h2>
-
-<h3>3</h3>
-
-<h4>4</h4>
-
-<h5>5</h5>
-
-<h6>6</h6>
-
-<h1>块引用：</h1>
-
-<blockquote><p>这是一块
-折行第二行</p>
-
-<p>second  no fold
-next line</p>
-
-<blockquote><p>nested
-引用的区块内也可以使用其他的 Markdown 语法</p></blockquote>
-
-<h2>H2</h2>
-
-<p>code:</p>
-
-<pre><code>print "tanky woo is sb"
-</code></pre></blockquote>
-
-<p>无序列表使用星号、加号或是减号作为列表标记：</p>
-
-<ul>
-<li>1
--2
--3</li>
-<li>4</li>
-</ul>
-
-
-<p>有序列表则使用数字接着一个英文句点：
-1. 1
-2. 2
-3.3</p>
-
-<ol>
-<li> 这是一段PA
-PA第二行</li>
-<li>PB
-PB第二行</li>
-</ol>
-
-
-<h3>带段落的列表</h3>
-
-<ul>
-<li><p>段落</p>
-
-<p>中断</p>
-
-<p>后段</p></li>
-<li><p>第二段
-    print &lsquo;wulei chaotang&rsquo;</p></li>
-</ul>
-
-
-<p>代码段</p>
-
-<pre><code>def soeasy():
-    return 0
-</code></pre>
-
-<p>   <div class="footer"></p>
-
-<pre><code>   &amp;copy; 2004 Foo Corporation
-</code></pre>
-
-<p>   </div></p>
-
-<pre><code>   &lt;div class="footer"&gt;
-       &amp;copy; 2004 Foo Corporation
-   &lt;/div&gt;
-</code></pre>
-
-<p> 分割线</p>
-
-<hr />
-
-<p>代码块中一般的markdown语法不会被转换</p>
-
-<p><a href="http://www.163.com" title="title">这是一个链接</a>指向163</p>
-
-<p><a href="http://zhentuy.github.io/" title="github博客地址">用变量定义的连接</a></p>
-
-<p><strong><a href="http://zhentuy.github.io/" title="github博客地址">myblog</a> 隐式连接就是省略了链接字符</strong>
-*<strong>aa</strong>
-<code>`print abc</code>d<code>``
-A single backtick in a code span:</code> ` &#8220;</p>
-
-<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
-
-<div>
-块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
-</div>
-
-
-<div>
-块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
-</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2014-02-17T07:38:48-08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/16/test/">Test</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing/" >Tweet</a>
+  
+  
+  
+</div>
 
-
-<time datetime="2013-12-16T08:25:26-08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2013</time>
-        
-      </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2> My First Jeklly Page </h2>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/26/test-on-work-please/" title="Previous Post: Test On Work Please">&laquo; Test On Work Please</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -411,7 +190,7 @@ A single backtick in a code span:</code> ` &#8220;</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <script type="text/javascript">
@@ -441,6 +220,7 @@ A single backtick in a code span:</code> ` &#8220;</p>
 
   
 </aside>
+
 
     </div>
   </div>

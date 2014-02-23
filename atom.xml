@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Zhentuy Tech Blog]]></title>
+  <title><![CDATA[Zhu]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-02-23T16:39:34+08:00</updated>
+  <updated>2014-02-23T03:24:33-08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -14,64 +14,39 @@
 
   
   <entry>
-    <title type="html"><![CDATA[如何安装包到指定版本的python]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/"/>
-    <updated>2014-02-23T15:35:24+08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python</id>
-    <content type="html"><![CDATA[<p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
+    <title type="html"><![CDATA[用octopress在github搭建博客后，如何在多台机器上部署“写作”环境]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-%2Cru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing/"/>
+    <updated>2014-02-17T07:38:48-08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/02/17/yong-octopresszai-githubda-jian-bo-ke-hou-,ru-he-zai-duo-tai-ji-qi-shang-bu-shu-xie-zuo-huan-jing</id>
+    <content type="html"><![CDATA[<p>在我窝里搭建好octopress的写作环境后，想在我工作场地也能随时写。
+于是把本地博客repo的sourse分支push到github上，以为在公司pull下来就能用了。</p>
 
-<pre><code>[zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which python
-/usr/local/bin/python
-[zhu@star sf]$ sudo which python
-/usr/bin/python
+<p>在公司机器上要装好octopress后，把博客repo的sourse分支pull到本地，</p>
+
+<pre><code>rake new_post['test']
 </code></pre>
 
-<p>用which命令看到sudo后的pip已经不是我们想用的pip了。如果sudo pip install 会直接安装2.6中。要想装包到2.7中其实很简单： <em>用绝对路径</em></p>
+<p>报错，说没有<em>deploy 目录。 新建一个</em>deploy 目录还是报错。回家后看到octopress的.gitignore 里面有deploy。
+删除掉，push。到公司pull下来，继续rake，还是报错。</p>
 
-<pre><code>[zhu@star sf]$ sudo /usr/local/bin/pip install requests 
-Downloading/unpacking requests
-Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
-Installing collected packages: requests
-Successfully installed requests
-Cleaning up...
-[zhu@star sf]$ pip show requests
----
-Name: requests
-Version: 2.2.1
-Location: /usr/local/lib/python2.7/site-packages
-Requires:
-</code></pre>
+<p>这时候想起来octopress的文档</p>
 
-<p>从pip show 的信息中看出requests 这个包已经装入到2.7的目录了。</p>
+<blockquote><p>Ask for and store your Github Pages repository url.
+Rename the remote pointing to imathis/octopress from &lsquo;origin&rsquo; to &lsquo;octopress&rsquo;
+Add your Github Pages repository as the default origin remote.
+Switch the active branch from master to source.
+Configure your blog&rsquo;s url according to your repository.
+Setup a master branch in the _deploy directory for deployment.</p></blockquote>
 
-<p>如果想要明确的指定装包到2.6还有一个pip2.6，只需要用pip2.6替代pip就把包装入py2.6了</p>
-
-<pre><code>[zhu@star sf]$ which pip2.6
-/usr/bin/pip2.6
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Wxh]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/01/27/wxh/"/>
-    <updated>2014-01-27T15:13:46+08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/01/27/wxh</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>  把原始_deploy放入git pull 到想保存编辑环境的地方。就可以用rake deploy 了</p>
+<p><em>deploy目录下有独立的git目录，里面的.git文件不会被push到github上。回家开VPN，把</em>deploy目录下的.git
+scp 到工作用机器上，rake new_post[&lsquo;test&rsquo;]成功</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Test on Work Please]]></title>
     <link href="http://zhentuy.github.io/blog/2014/01/26/test-on-work-please/"/>
-    <updated>2014-01-26T00:00:00+08:00</updated>
+    <updated>2014-01-26T00:00:00-08:00</updated>
     <id>http://zhentuy.github.io/blog/2014/01/26/test-on-work-please</id>
     <content type="html"><![CDATA[<hr />
 
@@ -87,10 +62,154 @@ comments: true</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Markdown Note]]></title>
+    <link href="http://zhentuy.github.io/blog/2013/12/21/markdown-note/"/>
+    <updated>2013-12-21T05:34:26-08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/21/markdown-note</id>
+    <content type="html"><![CDATA[<div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+*在 HTML 区块标签间的 Markdown 格式语法将不会被处理*
+和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
+需要转意的字符 “<“ ”&“  md回自动转移，或者不转 code 范围内除外
+code 范围内，不论是行内还是区块， < 和 & 两个符号都一定会被转换成 HTML 实体，
+一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
+段内强迫换行在插入处先按入两个以上的空格然后回车
+
+强制  
+换行
+============
+bb
+--------
+</div>
+
+
+<p><em>在 HTML 区块标签间的 Markdown 格式语法将不会被处理</em>
+一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行
+强制<br/>
+换行</p>
+
+<p>============</p>
+
+<h2>bb</h2>
+
+<h1>1</h1>
+
+<h2>2</h2>
+
+<h3>3</h3>
+
+<h4>4</h4>
+
+<h5>5</h5>
+
+<h6>6</h6>
+
+<h1>块引用：</h1>
+
+<blockquote><p>这是一块
+折行第二行</p>
+
+<p>second  no fold
+next line</p>
+
+<blockquote><p>nested
+引用的区块内也可以使用其他的 Markdown 语法</p></blockquote>
+
+<h2>H2</h2>
+
+<p>code:</p>
+
+<pre><code>print "tanky woo is sb"
+</code></pre></blockquote>
+
+<p>无序列表使用星号、加号或是减号作为列表标记：</p>
+
+<ul>
+<li>1
+-2
+-3</li>
+<li>4</li>
+</ul>
+
+
+<p>有序列表则使用数字接着一个英文句点：
+1. 1
+2. 2
+3.3</p>
+
+<ol>
+<li> 这是一段PA
+PA第二行</li>
+<li>PB
+PB第二行</li>
+</ol>
+
+
+<h3>带段落的列表</h3>
+
+<ul>
+<li><p>段落</p>
+
+<p>中断</p>
+
+<p>后段</p></li>
+<li><p>第二段
+    print &lsquo;wulei chaotang&rsquo;</p></li>
+</ul>
+
+
+<p>代码段</p>
+
+<pre><code>def soeasy():
+    return 0
+</code></pre>
+
+<p>   <div class="footer"></p>
+
+<pre><code>   &amp;copy; 2004 Foo Corporation
+</code></pre>
+
+<p>   </div></p>
+
+<pre><code>   &lt;div class="footer"&gt;
+       &amp;copy; 2004 Foo Corporation
+   &lt;/div&gt;
+</code></pre>
+
+<p> 分割线</p>
+
+<hr />
+
+<p>代码块中一般的markdown语法不会被转换</p>
+
+<p><a href="http://www.163.com" title="title">这是一个链接</a>指向163</p>
+
+<p><a href="http://zhentuy.github.io/" title="github博客地址">用变量定义的连接</a></p>
+
+<p><strong><a href="http://zhentuy.github.io/" title="github博客地址">myblog</a> 隐式连接就是省略了链接字符</strong>
+*<strong>aa</strong>
+<code>`print abc</code>d<code>``
+A single backtick in a code span:</code> ` &#8220;</p>
+
+<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
+
+<div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+</div>
+
+
+<div>
+块元素必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Test]]></title>
-    <link href="http://zhentuy.github.io/blog/2013/12/17/test/"/>
-    <updated>2013-12-17T00:25:26+08:00</updated>
-    <id>http://zhentuy.github.io/blog/2013/12/17/test</id>
+    <link href="http://zhentuy.github.io/blog/2013/12/16/test/"/>
+    <updated>2013-12-16T08:25:26-08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/16/test</id>
     <content type="html"><![CDATA[<h2> My First Jeklly Page </h2>
 
 ]]></content>
