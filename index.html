@@ -76,7 +76,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a></h1>
     
     
       <p class="meta">
@@ -92,10 +92,10 @@
   
 
 
-<time datetime="2014-02-23T15:35:24+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
+<time datetime="2014-02-22T23:35:24-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
         
-           | <a href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">Comments</a>
+           | <a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">Comments</a>
         
       </p>
     
@@ -149,7 +149,7 @@ Requires:
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/01/27/wxh/">Wxh</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/01/26/wxh/">Wxh</a></h1>
     
     
       <p class="meta">
@@ -165,10 +165,10 @@ Requires:
   
 
 
-<time datetime="2014-01-27T15:13:46+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2014</time>
+<time datetime="2014-01-26T23:13:46-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2014</time>
         
-           | <a href="/blog/2014/01/27/wxh/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2014/01/27/wxh/">Comments</a>
+           | <a href="/blog/2014/01/26/wxh/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2014/01/26/wxh/">Comments</a>
         
       </p>
     
@@ -179,7 +179,7 @@ Requires:
   
   
     <footer>
-      <a rel="full-article" href="/blog/2014/01/27/wxh/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2014/01/26/wxh/">Read on &rarr;</a>
     </footer>
   
 
@@ -207,7 +207,7 @@ Requires:
   
 
 
-<time datetime="2014-01-26T00:00:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2014-01-26T00:00:00-08:00" pubdate data-updated="true"></time>
         
            | <a href="/blog/2014/01/26/test-on-work-please/#disqus_thread"
              data-disqus-identifier="http://zhentuy.github.io/blog/2014/01/26/test-on-work-please/">Comments</a>
@@ -239,7 +239,7 @@ comments: true</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/17/test/">Test</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/12/16/test/">Octopress Gitpage 搭建博客后远程协作</a></h1>
     
     
       <p class="meta">
@@ -255,18 +255,45 @@ comments: true</p>
   
 
 
-<time datetime="2013-12-17T00:25:26+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+<time datetime="2013-12-16T08:25:26-08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2013</time>
         
-           | <a href="/blog/2013/12/17/test/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2013/12/17/test/">Comments</a>
+           | <a href="/blog/2013/12/16/test/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2013/12/16/test/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2> My First Jeklly Page </h2>
+  <div class="entry-content"><p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
 
+<p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
+写完rake generate 正常。<code>rake  deploy</code> * 木有 _deploy目录*</p>
+
+<p>新建一个，rake deploy 报错“找不到git文件”。肿么回事在家push  source 的时候忘 push <em>deploy 了？
+vi .gitignore 发现</em>deploy 目录竟然在里面！octopress不想把_deploy纳入版本库中。</p>
+
+<p>回家后观察了rake deply 的过程，是把<em>deploy 目录当成推送到你博客repo的基站了。</em>deploy 目录下有一个.git目录。</p>
+
+<pre><code>   [zhu@localhost _deploy]$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:zhentuy/zhentuy.github.io.git
+  Push  URL: git@github.com:zhentuy/zhentuy.github.io.git
+  HEAD branch: master
+  Remote branches:
+    master tracked
+    source tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date) 
+</code></pre>
+
+<p>这个指向你在github博客repo  master分支。跟上一层目录的master分支是一样的。所以你在别的机器上
+pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_deploy 分支里就能rake new_post 了。</p>
+
+<pre><code>git clone git@github.com:zhentuy/zhentuy.github.io.git _deploy
+</code></pre>
 </div>
   
   
@@ -307,11 +334,11 @@ comments: true</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
+        <a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/01/27/wxh/">Wxh</a>
+        <a href="/blog/2014/01/26/wxh/">Wxh</a>
       </li>
     
       <li class="post">
@@ -319,7 +346,7 @@ comments: true</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/12/17/test/">Test</a>
+        <a href="/blog/2013/12/16/test/">Octopress Gitpage 搭建博客后远程协作</a>
       </li>
     
   </ul>
