@@ -9,11 +9,7 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="在centos6.3下装了python2.7.3 系统自带python2.6。 [zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which &hellip;">
+  <meta name="description" content="想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。 mysql版本是 Server version: 5.1.69-log Source distribution 首选配置 /etc/my.cnf general_log=/var/log &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +66,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/">Mysql开启访问日志</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-15T06:31:21-07:00" pubdate data-updated="true">Mar 15<span>th</span>, 2014</time>
+        
+           | <a href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
+
+<p>mysql版本是</p>
+
+<pre><code>Server version: 5.1.69-log Source distribution
+</code></pre>
+
+<p>首选配置 /etc/my.cnf</p>
+
+<pre><code>general_log=/var/log/mysql/query.log
+log-output=FILE
+</code></pre>
+
+<p>general_log也可以写成log，但是这样在mysql的error.log 里面会有一warning  说这个deprecated。
+这error log  就是默认开启的mysqld.log，是不靠谱的，我配置完general.log，其实这个文件并不存在的时候
+它就不报错了！！等我配置好，重启mysqld，用python做一个查询，
+满心欢喜的去看query.log 的时候毛都没有。 文件没创建。不像mysqld.log是mysql的自己创建的。
+需要自己建立这个日志文件（在my.cnf里面配置的)，并把所有者改成mysql.</p>
+
+<pre><code>touch /var/log/mysql.general.log
+chown mysql.mysql /var/log/mysql.general.log
+</code></pre>
+
+<p>在次查询，终于看到mysql查询日志了~~</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -332,6 +390,10 @@ pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_dep
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/">Mysql开启访问日志</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
