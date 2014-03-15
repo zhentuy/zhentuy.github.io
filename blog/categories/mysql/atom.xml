@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mysql | Zhentuy Tech Blog]]></title>
+  <link href="http://zhentuy.github.io/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://zhentuy.github.io/"/>
+  <updated>2014-03-15T07:05:18-07:00</updated>
+  <id>http://zhentuy.github.io/</id>
+  <author>
+    <name><![CDATA[zhuhaipeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql开启访问日志]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/"/>
+    <updated>2014-03-15T06:31:21-07:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi</id>
+    <content type="html"><![CDATA[<p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
+
+<p>mysql版本是</p>
+
+<pre><code>Server version: 5.1.69-log Source distribution
+</code></pre>
+
+<p>首选配置 /etc/my.cnf</p>
+
+<pre><code>general_log=/var/log/mysql/query.log
+log-output=FILE
+</code></pre>
+
+<p>general_log也可以写成log，但是这样在mysql的error.log 里面会有一warning  说这个deprecated。
+这error log  就是默认开启的mysqld.log，是不靠谱的，我配置完general.log，其实这个文件并不存在的时候
+它就不报错了！！等我配置好，重启mysqld，用python做一个查询，
+满心欢喜的去看query.log 的时候毛都没有。 文件没创建。不像mysqld.log是mysql的自己创建的。
+需要自己建立这个日志文件（在my.cnf里面配置的)，并把所有者改成mysql.</p>
+
+<pre><code>touch /var/log/mysql.general.log
+chown mysql.mysql /var/log/mysql.general.log
+</code></pre>
+
+<p>在次查询，终于看到mysql查询日志了~~</p>
+]]></content>
+  </entry>
+  
+</feed>
