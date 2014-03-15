@@ -4,7 +4,7 @@
   <title><![CDATA[Zhentuy Tech Blog]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-03-15T07:05:18-07:00</updated>
+  <updated>2014-03-15T07:06:50-07:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -41,7 +41,7 @@ log-output=FILE
 chown mysql.mysql /var/log/mysql.general.log
 </code></pre>
 
-<p>在次查询，终于看到mysql查询日志了~~</p>
+<p>再次查询，终于看到mysql查询日志了~~</p>
 ]]></content>
   </entry>
   
