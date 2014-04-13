@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Zhentuy Tech Blog]]></title>
+  <link href="http://zhentuy.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://zhentuy.github.io/"/>
+  <updated>2014-04-13T04:15:55-07:00</updated>
+  <id>http://zhentuy.github.io/</id>
+  <author>
+    <name><![CDATA[zhuhaipeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Gitpage 搭建博客后远程协作]]></title>
+    <link href="http://zhentuy.github.io/blog/2013/12/16/cowork/"/>
+    <updated>2013-12-16T08:25:26-08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/16/cowork</id>
+    <content type="html"><![CDATA[<p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
+
+<p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
+写完rake generate 正常。<code>rake  deploy</code> * 木有 _deploy目录*</p>
+
+<p>新建一个，rake deploy 报错“找不到git文件”。肿么回事在家push  source 的时候忘 push <em>deploy 了？
+vi .gitignore 发现</em>deploy 目录竟然在里面！octopress不想把_deploy纳入版本库中。</p>
+
+<p>回家后观察了rake deply 的过程，是把<em>deploy 目录当成推送到你博客repo的基站了。</em>deploy 目录下有一个.git目录。</p>
+
+<pre><code>   [zhu@localhost _deploy]$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:zhentuy/zhentuy.github.io.git
+  Push  URL: git@github.com:zhentuy/zhentuy.github.io.git
+  HEAD branch: master
+  Remote branches:
+    master tracked
+    source tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date) 
+</code></pre>
+
+<p>这个指向你在github博客repo  master分支。跟上一层目录的master分支是一样的。所以你在别的机器上
+pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_deploy 分支里就能rake new_post 了。</p>
+
+<pre><code>git clone git@github.com:zhentuy/zhentuy.github.io.git _deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
