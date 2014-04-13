@@ -9,7 +9,7 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。 mysql版本是 Server version: 5.1.69-log Source distribution 首选配置 /etc/my.cnf general_log=/var/log &hellip;">
+  <meta name="description" content="想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。 mysql版本是 Server version: 5.1.69-log Source distribution 首选配置 /etc/my.cnf general_log=1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,7 +104,8 @@
 
 <p>首选配置 /etc/my.cnf</p>
 
-<pre><code>general_log=/var/log/mysql/query.log
+<pre><code>general_log=1
+general_log_file=/var/log/mysql/query.log
 log-output=FILE
 </code></pre>
 
