@@ -4,7 +4,7 @@
   <title><![CDATA[Zhentuy Tech Blog]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-04-13T03:36:33-07:00</updated>
+  <updated>2014-04-13T03:47:44-07:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -85,73 +85,6 @@ Requires:
 
 <pre><code>[zhu@star sf]$ which pip2.6
 /usr/bin/pip2.6
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Wxh]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/01/26/wxh/"/>
-    <updated>2014-01-26T23:13:46-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/01/26/wxh</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>  把原始_deploy放入git pull 到想保存编辑环境的地方。就可以用rake deploy 了</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Test on Work Please]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/01/26/test-on-work-please/"/>
-    <updated>2014-01-26T00:00:00-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/01/26/test-on-work-please</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>layout: post
-title: &ldquo;hello&rdquo;
-date: 2013-12-16 08:25:26 -0800
-comments: true</p>
-
-<h2>categories: </h2>
-
-<p>&mdash; test on work &mdash;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress Gitpage 搭建博客后远程协作]]></title>
-    <link href="http://zhentuy.github.io/blog/2013/12/16/test/"/>
-    <updated>2013-12-16T08:25:26-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2013/12/16/test</id>
-    <content type="html"><![CDATA[<p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
-
-<p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
-写完rake generate 正常。<code>rake  deploy</code> * 木有 _deploy目录*</p>
-
-<p>新建一个，rake deploy 报错“找不到git文件”。肿么回事在家push  source 的时候忘 push <em>deploy 了？
-vi .gitignore 发现</em>deploy 目录竟然在里面！octopress不想把_deploy纳入版本库中。</p>
-
-<p>回家后观察了rake deply 的过程，是把<em>deploy 目录当成推送到你博客repo的基站了。</em>deploy 目录下有一个.git目录。</p>
-
-<pre><code>   [zhu@localhost _deploy]$ git remote show origin
-* remote origin
-  Fetch URL: git@github.com:zhentuy/zhentuy.github.io.git
-  Push  URL: git@github.com:zhentuy/zhentuy.github.io.git
-  HEAD branch: master
-  Remote branches:
-    master tracked
-    source tracked
-  Local branch configured for 'git pull':
-    master merges with remote master
-  Local ref configured for 'git push':
-    master pushes to master (up to date) 
-</code></pre>
-
-<p>这个指向你在github博客repo  master分支。跟上一层目录的master分支是一样的。所以你在别的机器上
-pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_deploy 分支里就能rake new_post 了。</p>
-
-<pre><code>git clone git@github.com:zhentuy/zhentuy.github.io.git _deploy
 </code></pre>
 ]]></content>
   </entry>

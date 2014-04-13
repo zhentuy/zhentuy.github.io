@@ -1,18 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://zhentuy.github.io/blog/2013/12/16/test/</loc>
-        <lastmod>2014-03-15T06:28:14-07:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zhentuy.github.io/blog/2014/01/26/test-on-work-please/</loc>
-        <lastmod>2014-02-23T08:59:46-08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zhentuy.github.io/blog/2014/01/26/wxh/</loc>
-        <lastmod>2014-02-23T08:59:46-08:00</lastmod>
-    </url>
-    <url>
         <loc>
             http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/
         </loc>
