@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Zhentuy Tech Blog]]></title>
-  <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Python | Zhentuy Tech Blog]]></title>
+  <link href="http://zhentuy.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
   <updated>2014-08-27T09:10:29-07:00</updated>
   <id>http://zhentuy.github.io/</id>
@@ -139,82 +139,6 @@ ValueError: Attempted relative import in non-package
 <p>如果要测试有相对导入的模块可以用<code>python -m yourmod</code>。</p>
 
 <p>困惑我最久的就是包导入和普通导入的区分</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mysql开启访问日志]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/"/>
-    <updated>2014-03-15T06:31:21-07:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi</id>
-    <content type="html"><![CDATA[<p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
-
-<p>mysql版本是</p>
-
-<pre><code>Server version: 5.1.69-log Source distribution
-</code></pre>
-
-<p>首选配置 /etc/my.cnf</p>
-
-<pre><code>general_log=1
-general_log_file=/var/log/mysql/query.log
-log-output=FILE
-</code></pre>
-
-<p>general_log也可以写成log，但是这样在mysql的error.log 里面会有一warning  说这个deprecated。
-这error log  就是默认开启的mysqld.log，是不靠谱的，我配置完general.log，其实这个文件并不存在的时候
-它就不报错了！！等我配置好，重启mysqld，用python做一个查询，
-满心欢喜的去看query.log 的时候毛都没有。 文件没创建。不像mysqld.log是mysql的自己创建的。
-需要自己建立这个日志文件（在my.cnf里面配置的)，并把所有者改成mysql.</p>
-
-<pre><code>touch /var/log/mysql.general.log
-chown mysql.mysql /var/log/mysql.general.log
-</code></pre>
-
-<p>再次查询，终于看到mysql查询日志了~~</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何安装包到指定版本的python]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/"/>
-    <updated>2014-02-22T23:35:24-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python</id>
-    <content type="html"><![CDATA[<p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
-
-<pre><code>[zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which python
-/usr/local/bin/python
-[zhu@star sf]$ sudo which python
-/usr/bin/python
-</code></pre>
-
-<p>用which命令看到sudo后的pip已经不是我们想用的pip了。如果sudo pip install 会直接安装2.6中。要想装包到2.7中其实很简单： <em>用绝对路径</em></p>
-
-<pre><code>[zhu@star sf]$ sudo /usr/local/bin/pip install requests 
-Downloading/unpacking requests
-Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
-Installing collected packages: requests
-Successfully installed requests
-Cleaning up...
-[zhu@star sf]$ pip show requests
----
-Name: requests
-Version: 2.2.1
-Location: /usr/local/lib/python2.7/site-packages
-Requires:
-</code></pre>
-
-<p>从pip show 的信息中看出requests 这个包已经装入到2.7的目录了。</p>
-
-<p>如果想要明确的指定装包到2.6还有一个pip2.6，只需要用pip2.6替代pip就把包装入py2.6了</p>
-
-<pre><code>[zhu@star sf]$ which pip2.6
-/usr/bin/pip2.6
-</code></pre>
 ]]></content>
   </entry>
   

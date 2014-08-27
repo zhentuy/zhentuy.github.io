@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zhentuy Tech Blog</title>
+  <title>Python导入的路径，绝对导入，相对导入 - Zhentuy Tech Blog</title>
   <meta name="author" content="zhuhaipeng">
 
   
@@ -22,7 +22,7 @@ python模块导入时的搜索路径： 程序主目录，执行程序是包含�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhentuy.github.io">
+  <link rel="canonical" href="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zhentuy Tech Blog" type="application/atom+xml">
@@ -68,15 +68,12 @@ python模块导入时的搜索路径： 程序主目录，执行程序是包含�
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/">Python导入的路径，绝对导入，相对导入</a></h1>
+      <h1 class="entry-title">Python导入的路径，绝对导入，相对导入</h1>
     
     
       <p class="meta">
@@ -94,15 +91,15 @@ python模块导入时的搜索路径： 程序主目录，执行程序是包含�
 
 <time datetime="2014-08-26T07:39:03-07:00" pubdate data-updated="true">Aug 26<span>th</span>, 2014</time>
         
-           | <a href="/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><strong>首先要区分的是两种导入：</strong><br/>
+<div class="entry-content"><p><strong>首先要区分的是两种导入：</strong><br/>
 包内导入<br/>
 在python yourcode 运行时导入 我把这个命名为“直接导入”</p>
 
@@ -224,85 +221,16 @@ ValueError: Attempted relative import in non-package
 
 <p>困惑我最久的就是包导入和普通导入的区分</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/">Mysql开启访问日志</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">zhuhaipeng</span></span>
 
-<time datetime="2014-03-15T06:31:21-07:00" pubdate data-updated="true">Mar 15<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
-
-<p>mysql版本是</p>
-
-<pre><code>Server version: 5.1.69-log Source distribution
-</code></pre>
-
-<p>首选配置 /etc/my.cnf</p>
-
-<pre><code>general_log=1
-general_log_file=/var/log/mysql/query.log
-log-output=FILE
-</code></pre>
-
-<p>general_log也可以写成log，但是这样在mysql的error.log 里面会有一warning  说这个deprecated。
-这error log  就是默认开启的mysqld.log，是不靠谱的，我配置完general.log，其实这个文件并不存在的时候
-它就不报错了！！等我配置好，重启mysqld，用python做一个查询，
-满心欢喜的去看query.log 的时候毛都没有。 文件没创建。不像mysqld.log是mysql的自己创建的。
-需要自己建立这个日志文件（在my.cnf里面配置的)，并把所有者改成mysql.</p>
-
-<pre><code>touch /var/log/mysql.general.log
-chown mysql.mysql /var/log/mysql.general.log
-</code></pre>
-
-<p>再次查询，终于看到mysql查询日志了~~</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -314,64 +242,62 @@ chown mysql.mysql /var/log/mysql.general.log
   
 
 
-<time datetime="2014-02-22T23:35:24-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
-        
-           | <a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/#disqus_thread"
-             data-disqus-identifier="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">Comments</a>
-        
-      </p>
+<time datetime="2014-08-26T07:39:03-07:00" pubdate data-updated="true">Aug 26<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/" >Tweet</a>
+  
+  
+  
+  
 
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"> </a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"> </a>
+        <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    </div>
+<script>
+    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","weixin","youdao","douban"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","youdao","douban"]}};
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
-  <div class="entry-content"><p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
-
-<pre><code>[zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which python
-/usr/local/bin/python
-[zhu@star sf]$ sudo which python
-/usr/bin/python
-</code></pre>
-
-<p>用which命令看到sudo后的pip已经不是我们想用的pip了。如果sudo pip install 会直接安装2.6中。要想装包到2.7中其实很简单： <em>用绝对路径</em></p>
-
-<pre><code>[zhu@star sf]$ sudo /usr/local/bin/pip install requests 
-Downloading/unpacking requests
-Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
-Installing collected packages: requests
-Successfully installed requests
-Cleaning up...
-[zhu@star sf]$ pip show requests
----
-Name: requests
-Version: 2.2.1
-Location: /usr/local/lib/python2.7/site-packages
-Requires:
-</code></pre>
-
-<p>从pip show 的信息中看出requests 这个包已经装入到2.7的目录了。</p>
-
-<p>如果想要明确的指定装包到2.6还有一个pip2.6，只需要用pip2.6替代pip就把包装入py2.6了</p>
-
-<pre><code>[zhu@star sf]$ which pip2.6
-/usr/bin/pip2.6
-</code></pre>
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/" title="Previous Post: mysql开启访问日志">&laquo; mysql开启访问日志</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+
+
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -416,7 +342,7 @@ Requires:
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <script type="text/javascript">
@@ -447,6 +373,7 @@ Requires:
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -461,7 +388,10 @@ Requires:
       var disqus_shortname = 'zhentuy';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/';
+        var disqus_url = 'http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
