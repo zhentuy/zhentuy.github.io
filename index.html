@@ -9,11 +9,10 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="首先要区分的是两种导入：
-包内导入
-在python yourcode 运行时导入 我把这个命名为“直接导入” 相对导入，绝对导入这些概念仅作用于包导入。
-不管哪种导入python需要找到它们
-python模块导入时的搜索路径： 程序主目录，执行程序是包含执行代码文件的目录，交互模式下为当前工作目录 &hellip;">
+  <meta name="description" content="首先要搞清楚unicode和encoding之间的关系。unicode定义了一个字符的“值”，不管几进制就一个整数对应一个字符。
+但是这个值怎么存，unicode不管。
+“这不是我的事” &mdash;unicode
+于是出来utf8 gbk utf16 等编码(encoding) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +69,159 @@ python模块导入时的搜索路径： 程序主目录，执行程序是包含�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/31/python-bian-ma/">Python 编码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-31T07:57:18-07:00" pubdate data-updated="true">Aug 31<span>st</span>, 2014</time>
+        
+           | <a href="/blog/2014/08/31/python-bian-ma/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2014/08/31/python-bian-ma/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>首先要搞清楚unicode和encoding之间的关系。unicode定义了一个字符的“值”，不管几进制就一个整数对应一个字符。
+但是这个值怎么存，unicode不管。<br/>
+“这不是我的事” &mdash;unicode<br/>
+于是出来utf8 gbk utf16 等编码(encoding)它们的工作是把unicode转换成byte二进制，这样就能存能取了。</p>
+
+<blockquote><p>The rules for translating a Unicode string into a sequence of bytes are called an encoding.</p></blockquote>
+
+<p>一般编码不会包括所有unicode，这就是为啥我们在python里面经常遇到头痛的UnicodeDecodeError,UnicodeEncodeError
+的异常了。这两个异常一般带个信息&#8217;xxx&#8217; codec cant encode(decode) characters(bytes) in position n-m。说明这几个
+unicode我没有编码，或者这段二进制数据按我的编码解析不成unicode。</p>
+
+<ul>
+<li>python 2.x 中str表示8位文本和二进制数据。 unicode 表示宽字符unicode</li>
+<li>python 3.x 中str表示8或者更宽的unicode文本，byte表示二进制数据</li>
+</ul>
+
+
+<p>在python2.6的下unicode通过encode转换成str，str通过decode转换成unicode.<br/>
+看到系统默认的encoding是utf8</p>
+
+<pre><code>[zhu@zhu zhentuy.github.io]$ env | grep LANG
+LANG=en_US.UTF-8
+</code></pre>
+
+<hr />
+
+<pre><code>In [7]: s = 'abc朱海鹏' 
+In [8]: us = u'abc朱海鹏'
+In [9]: s
+Out[9]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8f'
+In [10]: us
+Out[10]: u'abc\u6731\u6d77\u9e4f'
+In [11]: len(s)
+Out[11]: 12
+In [12]: len(us)
+Out[12]: 6
+</code></pre>
+
+<p>我们看到str的数据在abc后面就是\x 十六进制了，而且长度是按照二进制来计算的
+us的\u开头表明是unicode，len返回的长度是6二进制下返回12, &lsquo;abc&#8217;占3byte
+可以计算出这三个汉字在utf8编码下占3byte，</p>
+
+<pre><code>In [13]: s.decode('utf8')
+Out[13]: u'abc\u6731\u6d77\u9e4f'
+In [14]: s.decode('utf8') == us
+Out[14]: True
+In [15]: us.encode('utf8')
+Out[15]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8f'
+In [16]: us.encode('utf8') == s
+Out[16]: True
+</code></pre>
+
+<p>二进制str与unicode之间的转换通过decode与encode</p>
+
+<pre><code>In [17]: print us, s
+abc朱海鹏 abc朱海鹏
+In [18]: print us.encode('gbk')
+abc▒▒
+In [19]: print s.decode('gbk')
+---------------------------------------------------------------------------
+UnicodeDecodeError                        Traceback (most recent call last)
+/opt/hub/zhentuy.github.io/&lt;ipython-input-19-a2cf99eaf4f2&gt; in &lt;module&gt;()
+----&gt; 1 print s.decode('gbk')
+
+UnicodeDecodeError: 'gbk' codec can't decode byte 0x8f in position 11: incomplete multibyte sequence
+</code></pre>
+
+<p>gbk 肯定给这三个常用汉字编码了，这个ipython里面用的utf8来识别宽字符，如果你在win下shell里面会看到(cmd里面启动
+python不要用IDLE)</p>
+
+<pre><code>&gt;&gt;&gt; s = "朱海鹏"
+&gt;&gt;&gt; us = u"朱海鹏"
+&gt;&gt;&gt; s
+'\xd6\xec\xba\xa3\xc5\xf4'
+&gt;&gt;&gt; us
+u'\u6731\u6d77\u9e4f'
+&gt;&gt;&gt; print s,us
+朱海鹏 朱海鹏
+&gt;&gt;&gt; print us.encode('gbk')
+朱海鹏
+&gt;&gt;&gt; print us.encode('utf8')
+鏈辨捣楣
+&gt;&gt;&gt; print us.encode('gb2312')
+朱海鹏
+</code></pre>
+
+<p>乱码是因为系统默认编码(encoding)的问题，不是因为unicode字符‘朱海鹏’不能编码成gbk, gb2312。</p>
+
+<p>unicode是不能直接保存到文件的，存到文件系统的只能是二进制，由于二进制肯定是某种编码的二进制，所以读取的时候要对上号</p>
+
+<pre><code>In [20]: f = open('tunisave.txt', 'w')
+In [21]: f.write(s)
+In [22]: f.write(us)
+---------------------------------------------------------------------------
+UnicodeEncodeError                        Traceback (most recent call last)
+/opt/hub/zhentuy.github.io/&lt;ipython-input-22-a2427ff060ce&gt; in &lt;module&gt;()
+----&gt; 1 f.write(us)
+
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 3-5: ordinal not in range(128)
+In [23]: f.write(us.encode('gbk'))
+In [24]: f.close()
+In [25]: f = open('tunisave.txt', 'r')
+In [26]: data = f.read()
+In [27]: data
+Out[27]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8fabc\xd6\xec\xba\xa3\xc5\xf4'
+In [28]: print data
+abc朱海鹏abc▒▒
+In [29]: print data.decode('gbk')
+abc鏈辨捣楣廰bc朱海鹏
+</code></pre>
+
+<p>后面乱码是因为uft8格式和gbk格式的二进制数据混着写了~~</p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮一峰这篇博客讲的不错，还讲了utf8怎么编码</a><br/>
+[python howto unicode 讲的很清楚] (<a href="https://docs.python.org/2/howto/unicode.html">https://docs.python.org/2/howto/unicode.html</a>)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -397,6 +549,10 @@ Requires:
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/31/python-bian-ma/">Python 编码</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/">Python导入的路径，绝对导入，相对导入</a>
