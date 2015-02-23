@@ -37,7 +37,7 @@ unicode我没有编码，或者这段二进制数据按我的编码解析不成u
     Out[12]: 6
 我们看到str的数据在abc后面就是\x 十六进制了，而且长度是按照二进制来计算的
 us的\u开头表明是unicode，len返回的长度是6二进制下返回12, 'abc'占3byte 
-可以计算出这三个汉字在utf8编码下占3byte，
+可以计算出这三个汉字在utf8编码下每个占3byte，
     In [13]: s.decode('utf8')
     Out[13]: u'abc\u6731\u6d77\u9e4f'
     In [14]: s.decode('utf8') == us
