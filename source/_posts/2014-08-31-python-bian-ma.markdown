@@ -99,4 +99,4 @@ unicode是不能直接保存到文件的，存到文件系统的只能是二进�
 后面乱码是因为uft8格式和gbk格式的二进制数据混着写了~~
 
 [阮一峰这篇博客讲的不错，还讲了utf8怎么编码](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)  
-[python howto unicode 讲的很清楚] (https://docs.python.org/2/howto/unicode.html)
+[python howto unicode 讲的很清楚](https://docs.python.org/2/howto/unicode.html)
