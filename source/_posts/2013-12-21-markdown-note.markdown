@@ -4,7 +4,7 @@ title: "markdown note"
 date: 2013-12-21 05:34:26 -0800
 comments: true
 published: false
-categories: 
+categories: test
 ---
 
 MD 是一种书写语言，HTML是一种表现语言。
