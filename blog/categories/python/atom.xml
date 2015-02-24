@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Python | Zhentuy Tech Blog]]></title>
+  <title><![CDATA[Category: Python | Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-08-31T09:58:18-07:00</updated>
+  <updated>2015-02-24T10:44:07-08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -58,7 +58,7 @@ Out[12]: 6
 
 <p>我们看到str的数据在abc后面就是\x 十六进制了，而且长度是按照二进制来计算的
 us的\u开头表明是unicode，len返回的长度是6二进制下返回12, &lsquo;abc'占3byte
-可以计算出这三个汉字在utf8编码下占3byte，</p>
+可以计算出这三个汉字在utf8编码下每个占3byte，</p>
 
 <pre><code>In [13]: s.decode('utf8')
 Out[13]: u'abc\u6731\u6d77\u9e4f'
@@ -132,7 +132,7 @@ abc鏈辨捣楣廰bc朱海鹏
 <p>后面乱码是因为uft8格式和gbk格式的二进制数据混着写了~~</p>
 
 <p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮一峰这篇博客讲的不错，还讲了utf8怎么编码</a><br/>
-[python howto unicode 讲的很清楚] (<a href="https://docs.python.org/2/howto/unicode.html">https://docs.python.org/2/howto/unicode.html</a>)</p>
+<a href="https://docs.python.org/2/howto/unicode.html">python howto unicode 讲的很清楚</a></p>
 ]]></content>
   </entry>
   
@@ -142,20 +142,16 @@ abc鏈辨捣楣廰bc朱海鹏
     <updated>2014-08-26T07:39:03-07:00</updated>
     <id>http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-,jue-dui-dao-ru-,xiang-dui-dao-ru</id>
     <content type="html"><![CDATA[<p><strong>首先要区分的是两种导入：</strong><br/>
-包内导入<br/>
-在python yourcode 运行时导入 我把这个命名为“直接导入”</p>
+1.  包内导入<br/>
+2.  在python yourcode 运行时导入 我把这个命名为“直接导入”<br/>
+相对导入，绝对导入这些概念仅作用于包内导入</p>
 
-<p>相对导入，绝对导入这些概念仅作用于包导入。<br/>
-不管哪种导入python需要找到它们<br/>
-python模块导入时的搜索路径：</p>
-
-<ol>
-<li> 程序主目录，执行程序是包含执行代码文件的目录，交互模式下为当前工作目录 优先级最高</li>
-<li> PYTHONPATH中的目录</li>
-<li> 标准链接库目录，就是python的安装目录，源码在里面</li>
-<li> 3.x 中可以用.pth 文件</li>
-</ol>
-
+<p>不管哪种导入python需要找到它们<br/>
+python模块导入时的搜索路径：<br/>
+1.   程序主目录，执行程序是包含执行代码文件的目录，交互模式下为当前工作目录,优先级最高<br/>
+2.   PYTHONPATH中的目录<br/>
+3.   标准链接库目录，就是python的安装目录，源码在里面<br/>
+4.   3.x 中可以用.pth 文件</p>
 
 <p>这些构成了sys.path。你写的模块存储路径在sys.path 里面就可以import。
 由于搜索路径有先后顺序，所以前面同名的模块容易“挡住”后面的模块<br/>

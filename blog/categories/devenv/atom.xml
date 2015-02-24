@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Devenv | Zhentuy Tech Blog]]></title>
+  <title><![CDATA[Category: Devenv | Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/blog/categories/devenv/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2014-08-31T09:58:18-07:00</updated>
+  <updated>2015-02-24T10:44:07-08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
