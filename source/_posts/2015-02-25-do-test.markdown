@@ -3,7 +3,6 @@ layout: post
 title: "'do test'"
 date: 2015-02-25 11:39:53 +0800
 comments: true
-published: false
 categories: test
 ---
 
