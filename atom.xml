@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2015-02-26T17:52:41+08:00</updated>
+  <updated>2015-02-26T17:55:50+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -12,16 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA['Do Test']]></title>
-    <link href="http://zhentuy.github.io/blog/2015/02/25/do-test/"/>
-    <updated>2015-02-25T11:39:53+08:00</updated>
-    <id>http://zhentuy.github.io/blog/2015/02/25/do-test</id>
-    <content type="html"><![CDATA[<p>MD 是一种书写语言，HTML是一种表现语言。
-Markdown 的理念是，能让文档更容易读、写和随意改</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python 编码]]></title>
