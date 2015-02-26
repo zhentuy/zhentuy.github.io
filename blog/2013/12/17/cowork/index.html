@@ -5,15 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>如何安装包到指定版本的python - Zhu Haipeng Tech Blog</title>
+  <title>Octopress Gitpage 搭建博客后远程协作 - Zhu Haipeng Tech Blog</title>
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="在centos6.3下装了python2.7.3 系统自带python2.6。 [zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which &hellip;">
+  <meta name="description" content="在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。 学人家push source 分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
+写完rake generate 正常。rake deploy * 木有 _deploy目录* &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python">
+  <link rel="canonical" href="http://zhentuy.github.io/blog/2013/12/17/cowork">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zhu Haipeng Tech Blog" type="application/atom+xml">
@@ -73,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">如何安装包到指定版本的python</h1>
+      <h1 class="entry-title">Octopress Gitpage 搭建博客后远程协作</h1>
     
     
       <p class="meta">
@@ -89,7 +86,7 @@
   
 
 
-<time datetime="2014-02-22T23:35:24-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
+<time datetime="2013-12-17T00:25:26+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://zhentuy.github.io">Comments</a>
@@ -99,40 +96,34 @@
   </header>
 
 
-<div class="entry-content"><p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
+<div class="entry-content"><p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
 
-<pre><code>[zhu@star sf]$ which pip
-/usr/local/bin/pip
-[zhu@star sf]$ sudo which pip
-/usr/bin/pip
-[zhu@star sf]$ which python
-/usr/local/bin/python
-[zhu@star sf]$ sudo which python
-/usr/bin/python
+<p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
+写完rake generate 正常。<code>rake  deploy</code> * 木有 _deploy目录*</p>
+
+<p>新建一个，rake deploy 报错“找不到git文件”。肿么回事在家push  source 的时候忘 push <em>deploy 了？
+vi .gitignore 发现</em>deploy 目录竟然在里面！octopress不想把_deploy纳入版本库中。</p>
+
+<p>回家后观察了rake deply 的过程，是把<em>deploy 目录当成推送到你博客repo的基站了。</em>deploy 目录下有一个.git目录。</p>
+
+<pre><code>   [zhu@localhost _deploy]$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:zhentuy/zhentuy.github.io.git
+  Push  URL: git@github.com:zhentuy/zhentuy.github.io.git
+  HEAD branch: master
+  Remote branches:
+    master tracked
+    source tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date) 
 </code></pre>
 
-<p>用which命令看到sudo后的pip已经不是我们想用的pip了。如果sudo pip install 会直接安装2.6中。要想装包到2.7中其实很简单： <em>用绝对路径</em></p>
+<p>这个指向你在github博客repo  master分支。跟上一层目录的master分支是一样的。所以你在别的机器上
+pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_deploy 分支里就能rake new_post 了。</p>
 
-<pre><code>[zhu@star sf]$ sudo /usr/local/bin/pip install requests 
-Downloading/unpacking requests
-Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
-Installing collected packages: requests
-Successfully installed requests
-Cleaning up...
-[zhu@star sf]$ pip show requests
----
-Name: requests
-Version: 2.2.1
-Location: /usr/local/lib/python2.7/site-packages
-Requires:
-</code></pre>
-
-<p>从pip show 的信息中看出requests 这个包已经装入到2.7的目录了。</p>
-
-<p>如果想要明确的指定装包到2.6还有一个pip2.6，只需要用pip2.6替代pip就把包装入py2.6了</p>
-
-<pre><code>[zhu@star sf]$ which pip2.6
-/usr/bin/pip2.6
+<pre><code>git clone git@github.com:zhentuy/zhentuy.github.io.git _deploy
 </code></pre>
 </div>
 
@@ -156,12 +147,12 @@ Requires:
   
 
 
-<time datetime="2014-02-22T23:35:24-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
+<time datetime="2013-12-17T00:25:26+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/devenv/'>devenv</a>
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
   
 </span>
 
@@ -170,7 +161,7 @@ Requires:
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2013/12/17/cowork/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2013/12/17/cowork/" >Tweet</a>
   
   
   
@@ -194,10 +185,8 @@ Requires:
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/12/16/cowork/" title="Previous Post: octopress gitpage 搭建博客后远程协作">&laquo; octopress gitpage 搭建博客后远程协作</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/" title="Next Post: mysql开启访问日志">mysql开启访问日志 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/" title="Next Post: 如何安装包到指定版本的python">如何安装包到指定版本的python &raquo;</a>
       
     </p>
   </footer>
@@ -253,11 +242,11 @@ Requires:
       </li>
     
       <li class="post">
-        <a href="/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
+        <a href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/12/16/cowork/">Octopress Gitpage 搭建博客后远程协作</a>
+        <a href="/blog/2013/12/17/cowork/">Octopress Gitpage 搭建博客后远程协作</a>
       </li>
     
   </ul>
@@ -313,8 +302,8 @@ Requires:
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/';
-        var disqus_url = 'http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/';
+        var disqus_identifier = 'http://zhentuy.github.io/blog/2013/12/17/cowork/';
+        var disqus_url = 'http://zhentuy.github.io/blog/2013/12/17/cowork/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2015-02-24T10:44:07-08:00</updated>
+  <updated>2015-02-26T17:55:50+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress Gitpage 搭建博客后远程协作]]></title>
-    <link href="http://zhentuy.github.io/blog/2013/12/16/cowork/"/>
-    <updated>2013-12-16T08:25:26-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2013/12/16/cowork</id>
+    <link href="http://zhentuy.github.io/blog/2013/12/17/cowork/"/>
+    <updated>2013-12-17T00:25:26+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/17/cowork</id>
     <content type="html"><![CDATA[<p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
 
 <p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。

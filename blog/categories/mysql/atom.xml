@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mysql | Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2015-02-24T10:44:07-08:00</updated>
+  <updated>2015-02-26T17:55:50+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Mysql开启访问日志]]></title>
     <link href="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/"/>
-    <updated>2014-03-15T06:31:21-07:00</updated>
+    <updated>2014-03-15T21:31:21+08:00</updated>
     <id>http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi</id>
     <content type="html"><![CDATA[<p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
 

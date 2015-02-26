@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2015-02-24T10:44:07-08:00</updated>
+  <updated>2015-02-26T17:55:50+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Python 编码]]></title>
     <link href="http://zhentuy.github.io/blog/2014/08/31/python-bian-ma/"/>
-    <updated>2014-08-31T07:57:18-07:00</updated>
+    <updated>2014-08-31T22:57:18+08:00</updated>
     <id>http://zhentuy.github.io/blog/2014/08/31/python-bian-ma</id>
     <content type="html"><![CDATA[<p>首先要搞清楚unicode和encoding之间的关系。unicode定义了一个字符的“值”，不管几进制就一个整数对应一个字符。
 但是这个值怎么存，unicode不管。<br/>
@@ -139,7 +139,7 @@ abc鏈辨捣楣廰bc朱海鹏
   <entry>
     <title type="html"><![CDATA[Python导入的路径，绝对导入，相对导入]]></title>
     <link href="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/"/>
-    <updated>2014-08-26T07:39:03-07:00</updated>
+    <updated>2014-08-26T22:39:03+08:00</updated>
     <id>http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-,jue-dui-dao-ru-,xiang-dui-dao-ru</id>
     <content type="html"><![CDATA[<p><strong>首先要区分的是两种导入：</strong><br/>
 1.  包内导入<br/>
@@ -264,7 +264,7 @@ ValueError: Attempted relative import in non-package
   <entry>
     <title type="html"><![CDATA[Mysql开启访问日志]]></title>
     <link href="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/"/>
-    <updated>2014-03-15T06:31:21-07:00</updated>
+    <updated>2014-03-15T21:31:21+08:00</updated>
     <id>http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi</id>
     <content type="html"><![CDATA[<p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
 
@@ -296,9 +296,9 @@ chown mysql.mysql /var/log/mysql.general.log
   
   <entry>
     <title type="html"><![CDATA[如何安装包到指定版本的python]]></title>
-    <link href="http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/"/>
-    <updated>2014-02-22T23:35:24-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2014/02/22/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python</id>
+    <link href="http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/"/>
+    <updated>2014-02-23T15:35:24+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python</id>
     <content type="html"><![CDATA[<p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
 
 <pre><code>[zhu@star sf]$ which pip
@@ -339,9 +339,9 @@ Requires:
   
   <entry>
     <title type="html"><![CDATA[Octopress Gitpage 搭建博客后远程协作]]></title>
-    <link href="http://zhentuy.github.io/blog/2013/12/16/cowork/"/>
-    <updated>2013-12-16T08:25:26-08:00</updated>
-    <id>http://zhentuy.github.io/blog/2013/12/16/cowork</id>
+    <link href="http://zhentuy.github.io/blog/2013/12/17/cowork/"/>
+    <updated>2013-12-17T00:25:26+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/17/cowork</id>
     <content type="html"><![CDATA[<p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
 
 <p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
