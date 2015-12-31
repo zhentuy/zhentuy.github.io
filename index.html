@@ -9,10 +9,7 @@
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="首先要搞清楚unicode和encoding之间的关系。unicode定义了一个字符的“值”，不管几进制就一个整数对应一个字符。
-但是这个值怎么存，unicode不管。
-“这不是我的事” &mdash;unicode
-于是出来utf8 gbk utf16 等编码(encoding) &hellip;">
+  <meta name="description" content="项目中需要定期清理过期的图片，开始用: find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \; 这个每找到一个文件就启动一个新的进程，慢慢悠悠。 于是发明了改进型I: /bin/rm $(find /var/tmp/stuff -mtime +90 - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +66,84 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/">Linux 删除过期文件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-31T22:11:15+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2015</time>
+        
+           | <a href="/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目中需要定期清理过期的图片，开始用:</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \;
+</code></pre>
+
+<p>这个每找到一个文件就启动一个新的进程，慢慢悠悠。</p>
+
+<p>于是发明了改进型I:</p>
+
+<pre><code>/bin/rm $(find /var/tmp/stuff -mtime +90 -print)
+</code></pre>
+
+<p>这下就执行两个进程快是快了，但是由于文件太多，命令超长了！</p>
+
+<p>改进型II：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print | xargs /bin/rm
+</code></pre>
+
+<p>这下日子好过了，N天后磁盘又报警了，纳尼! 原因是xargs是按空格分隔参数的，
+如果你文件名中有空格，它当成两个文件删了，当然神马都没删掉</p>
+
+<p>改进型III:<br/>
+find  的 print0  action 用 askii 的 NUL 做分隔符<br/>
+xargs 的 -0 选项用 NULL做分隔符。用NUL 做分隔符的改进：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print0 | xargs -0 /bin/rm
+</code></pre>
+
+<p>但是这个不够安全，可能被越权删除</p>
+
+<p>终极版来了：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -delete
+</code></pre>
+
+<p>简单安全快速</p>
+
+<p>不要问我从哪里学的，，给我发红包告诉你<br/>
+不要告诉别人你 info  find 看下</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -614,6 +689,10 @@ pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_dep
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/">Linux 删除过期文件</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/08/31/python-bian-ma/">Python 编码</a>
       </li>
     
@@ -627,10 +706,6 @@ pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_dep
     
       <li class="post">
         <a href="/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/">如何安装包到指定版本的python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/17/cowork/">Octopress Gitpage 搭建博客后远程协作</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About Zhu Haipeng - Zhu Haipeng Tech Blog</title>
+  <title>Linux 删除过期文件 - Zhu Haipeng Tech Blog</title>
   <meta name="author" content="zhuhaipeng">
 
   
-  <meta name="description" content="About Zhu Haipeng Zhu Haipeng is a python developer. Work on Five Star Club. Skill on Django Redis Mongodb Mysql Git Vim Contact Me: E-mail &#122;&# &hellip;">
+  <meta name="description" content="项目中需要定期清理过期的图片，开始用: find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \; 这个每找到一个文件就启动一个新的进程，慢慢悠悠。 于是发明了改进型I: /bin/rm $(find /var/tmp/stuff -mtime +90 - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhentuy.github.io/about">
+  <link rel="canonical" href="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zhu Haipeng Tech Blog" type="application/atom+xml">
@@ -65,32 +65,107 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About Zhu Haipeng</h1>
+    
+      <h1 class="entry-title">Linux 删除过期文件</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-31T22:11:15+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2015</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zhentuy.github.io">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <p>Zhu Haipeng is a python developer.</p>
 
-<p>Work on <a href="http://www.wuxinghui.com" title="五星汇">Five Star Club</a>.</p>
 
-<p>Skill on  Django Redis Mongodb Mysql Git Vim</p>
+<div class="entry-content"><p>项目中需要定期清理过期的图片，开始用:</p>
 
-<p>Contact Me:</p>
+<pre><code>find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \;
+</code></pre>
 
-<blockquote><p>E-mail <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#122;&#104;&#x70;&#x31;&#53;&#x38;&#x31;&#x30;&#49;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#122;&#104;&#x70;&#49;&#x35;&#56;&#x31;&#48;&#49;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a></p>
+<p>这个每找到一个文件就启动一个新的进程，慢慢悠悠。</p>
 
-<p>QQ 752964360</p></blockquote>
+<p>于是发明了改进型I:</p>
 
-  
-    <footer>
+<pre><code>/bin/rm $(find /var/tmp/stuff -mtime +90 -print)
+</code></pre>
+
+<p>这下就执行两个进程快是快了，但是由于文件太多，命令超长了！</p>
+
+<p>改进型II：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print | xargs /bin/rm
+</code></pre>
+
+<p>这下日子好过了，N天后磁盘又报警了，纳尼! 原因是xargs是按空格分隔参数的，
+如果你文件名中有空格，它当成两个文件删了，当然神马都没删掉</p>
+
+<p>改进型III:<br/>
+find  的 print0  action 用 askii 的 NUL 做分隔符<br/>
+xargs 的 -0 选项用 NULL做分隔符。用NUL 做分隔符的改进：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print0 | xargs -0 /bin/rm
+</code></pre>
+
+<p>但是这个不够安全，可能被越权删除</p>
+
+<p>终极版来了：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -delete
+</code></pre>
+
+<p>简单安全快速</p>
+
+<p>不要问我从哪里学的，，给我发红包告诉你<br/>
+不要告诉别人你 info  find 看下</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-      
-        <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/about/index.html" data-via="zhentuy" data-counturl="http://zhentuy.github.io/about/index.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">zhuhaipeng</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-31T22:11:15+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/" data-via="zhentuy" data-counturl="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/" >Tweet</a>
   
   
   
@@ -111,9 +186,14 @@
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2014/08/31/python-bian-ma/" title="Previous Post: python 编码">&laquo; python 编码</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
   <section>
@@ -121,6 +201,9 @@
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
+
+
+
 
 </div>
 
@@ -223,8 +306,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhentuy.github.io/about/index.html';
-        var disqus_url = 'http://zhentuy.github.io/about/index.html';
+        var disqus_identifier = 'http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/';
+        var disqus_url = 'http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/';
         var disqus_script = 'embed.js';
       
     (function () {

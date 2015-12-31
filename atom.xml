@@ -4,7 +4,7 @@
   <title><![CDATA[Zhu Haipeng Tech Blog]]></title>
   <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
   <link href="http://zhentuy.github.io/"/>
-  <updated>2015-02-27T10:14:48+08:00</updated>
+  <updated>2015-12-31T23:51:21+08:00</updated>
   <id>http://zhentuy.github.io/</id>
   <author>
     <name><![CDATA[zhuhaipeng]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux 删除过期文件]]></title>
+    <link href="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/"/>
+    <updated>2015-12-31T22:11:15+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian</id>
+    <content type="html"><![CDATA[<p>项目中需要定期清理过期的图片，开始用:</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \;
+</code></pre>
+
+<p>这个每找到一个文件就启动一个新的进程，慢慢悠悠。</p>
+
+<p>于是发明了改进型I:</p>
+
+<pre><code>/bin/rm $(find /var/tmp/stuff -mtime +90 -print)
+</code></pre>
+
+<p>这下就执行两个进程快是快了，但是由于文件太多，命令超长了！</p>
+
+<p>改进型II：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print | xargs /bin/rm
+</code></pre>
+
+<p>这下日子好过了，N天后磁盘又报警了，纳尼! 原因是xargs是按空格分隔参数的，
+如果你文件名中有空格，它当成两个文件删了，当然神马都没删掉</p>
+
+<p>改进型III:<br/>
+find  的 print0  action 用 askii 的 NUL 做分隔符<br/>
+xargs 的 -0 选项用 NULL做分隔符。用NUL 做分隔符的改进：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print0 | xargs -0 /bin/rm
+</code></pre>
+
+<p>但是这个不够安全，可能被越权删除</p>
+
+<p>终极版来了：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -delete
+</code></pre>
+
+<p>简单安全快速</p>
+
+<p>不要问我从哪里学的，，给我发红包告诉你<br/>
+不要告诉别人你 info  find 看下</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python 编码]]></title>
