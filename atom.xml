@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Zhu Haipeng Tech Blog]]></title>
+  <link href="http://zhentuy.github.io/atom.xml" rel="self"/>
+  <link href="http://zhentuy.github.io/"/>
+  <updated>2016-01-01T01:09:16+08:00</updated>
+  <id>http://zhentuy.github.io/</id>
+  <author>
+    <name><![CDATA[zhuhaipeng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux 删除过期文件]]></title>
+    <link href="http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian/"/>
+    <updated>2015-12-31T22:11:15+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2015/12/31/linux-shan-chu-guo-qi-wen-jian</id>
+    <content type="html"><![CDATA[<p>项目中需要定期清理过期的图片，开始用:</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -exec /bin/rm {} \;
+</code></pre>
+
+<p>这个每找到一个文件就启动一个新的进程，慢慢悠悠。</p>
+
+<p>于是发明了改进型I:</p>
+
+<pre><code>/bin/rm $(find /var/tmp/stuff -mtime +90 -print)
+</code></pre>
+
+<p>这下就执行两个进程快是快了，但是由于文件太多，命令超长了！</p>
+
+<p>改进型II：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print | xargs /bin/rm
+</code></pre>
+
+<p>这下日子好过了，N天后磁盘又报警了，纳尼! 原因是xargs是按空格分隔参数的，
+如果你文件名中有空格，它当成两个文件删了，当然神马都没删掉</p>
+
+<p>改进型III:<br/>
+find  的 print0  action 用 askii 的 NUL 做分隔符<br/>
+xargs 的 -0 选项用 NULL做分隔符。用NUL 做分隔符的改进：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -print0 | xargs -0 /bin/rm
+</code></pre>
+
+<p>但是这个不够安全，可能被越权删除</p>
+
+<p>终极版来了：</p>
+
+<pre><code>find /var/tmp/stuff -mtime +90 -delete
+</code></pre>
+
+<p>简单安全快速</p>
+
+<p>不要问我从哪里学的，，给我发红包告诉你<br/>
+不要告诉别人你 info  find 看下</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python 编码]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/08/31/python-bian-ma/"/>
+    <updated>2014-08-31T22:57:18+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/08/31/python-bian-ma</id>
+    <content type="html"><![CDATA[<p>首先要搞清楚unicode和encoding之间的关系。unicode定义了一个字符的“值”，不管几进制就一个整数对应一个字符。
+但是这个值怎么存，unicode不管。<br/>
+“这不是我的事” &mdash;unicode<br/>
+于是出来utf8 gbk utf16 等编码(encoding)它们的工作是把unicode转换成byte二进制，这样就能存能取了。</p>
+
+<blockquote><p>The rules for translating a Unicode string into a sequence of bytes are called an encoding.</p></blockquote>
+
+<p>一般编码不会包括所有unicode，这就是为啥我们在python里面经常遇到头痛的UnicodeDecodeError,UnicodeEncodeError
+的异常了。这两个异常一般带个信息&#8217;xxx&#8217; codec cant encode(decode) characters(bytes) in position n-m。说明这几个
+unicode我没有编码，或者这段二进制数据按我的编码解析不成unicode。</p>
+
+<ul>
+<li>python 2.x 中str表示8位文本和二进制数据。 unicode 表示宽字符unicode</li>
+<li>python 3.x 中str表示8或者更宽的unicode文本，byte表示二进制数据</li>
+</ul>
+
+
+<p>在python2.6的下unicode通过encode转换成str，str通过decode转换成unicode.<br/>
+看到系统默认的encoding是utf8</p>
+
+<pre><code>[zhu@zhu zhentuy.github.io]$ env | grep LANG
+LANG=en_US.UTF-8
+</code></pre>
+
+<hr />
+
+<pre><code>In [7]: s = 'abc朱海鹏' 
+In [8]: us = u'abc朱海鹏'
+In [9]: s
+Out[9]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8f'
+In [10]: us
+Out[10]: u'abc\u6731\u6d77\u9e4f'
+In [11]: len(s)
+Out[11]: 12
+In [12]: len(us)
+Out[12]: 6
+</code></pre>
+
+<p>我们看到str的数据在abc后面就是\x 十六进制了，而且长度是按照二进制来计算的
+us的\u开头表明是unicode，len返回的长度是6二进制下返回12, &lsquo;abc&#8217;占3byte
+可以计算出这三个汉字在utf8编码下每个占3byte，</p>
+
+<pre><code>In [13]: s.decode('utf8')
+Out[13]: u'abc\u6731\u6d77\u9e4f'
+In [14]: s.decode('utf8') == us
+Out[14]: True
+In [15]: us.encode('utf8')
+Out[15]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8f'
+In [16]: us.encode('utf8') == s
+Out[16]: True
+</code></pre>
+
+<p>二进制str与unicode之间的转换通过decode与encode</p>
+
+<pre><code>In [17]: print us, s
+abc朱海鹏 abc朱海鹏
+In [18]: print us.encode('gbk')
+abc▒▒
+In [19]: print s.decode('gbk')
+---------------------------------------------------------------------------
+UnicodeDecodeError                        Traceback (most recent call last)
+/opt/hub/zhentuy.github.io/&lt;ipython-input-19-a2cf99eaf4f2&gt; in &lt;module&gt;()
+----&gt; 1 print s.decode('gbk')
+
+UnicodeDecodeError: 'gbk' codec can't decode byte 0x8f in position 11: incomplete multibyte sequence
+</code></pre>
+
+<p>gbk 肯定给这三个常用汉字编码了，这个ipython里面用的utf8来识别宽字符，如果你在win下shell里面会看到(cmd里面启动
+python不要用IDLE)</p>
+
+<pre><code>&gt;&gt;&gt; s = "朱海鹏"
+&gt;&gt;&gt; us = u"朱海鹏"
+&gt;&gt;&gt; s
+'\xd6\xec\xba\xa3\xc5\xf4'
+&gt;&gt;&gt; us
+u'\u6731\u6d77\u9e4f'
+&gt;&gt;&gt; print s,us
+朱海鹏 朱海鹏
+&gt;&gt;&gt; print us.encode('gbk')
+朱海鹏
+&gt;&gt;&gt; print us.encode('utf8')
+鏈辨捣楣
+&gt;&gt;&gt; print us.encode('gb2312')
+朱海鹏
+</code></pre>
+
+<p>乱码是因为系统默认编码(encoding)的问题，不是因为unicode字符‘朱海鹏’不能编码成gbk, gb2312。</p>
+
+<p>unicode是不能直接保存到文件的，存到文件系统的只能是二进制，由于二进制肯定是某种编码的二进制，所以读取的时候要对上号</p>
+
+<pre><code>In [20]: f = open('tunisave.txt', 'w')
+In [21]: f.write(s)
+In [22]: f.write(us)
+---------------------------------------------------------------------------
+UnicodeEncodeError                        Traceback (most recent call last)
+/opt/hub/zhentuy.github.io/&lt;ipython-input-22-a2427ff060ce&gt; in &lt;module&gt;()
+----&gt; 1 f.write(us)
+
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 3-5: ordinal not in range(128)
+In [23]: f.write(us.encode('gbk'))
+In [24]: f.close()
+In [25]: f = open('tunisave.txt', 'r')
+In [26]: data = f.read()
+In [27]: data
+Out[27]: 'abc\xe6\x9c\xb1\xe6\xb5\xb7\xe9\xb9\x8fabc\xd6\xec\xba\xa3\xc5\xf4'
+In [28]: print data
+abc朱海鹏abc▒▒
+In [29]: print data.decode('gbk')
+abc鏈辨捣楣廰bc朱海鹏
+</code></pre>
+
+<p>后面乱码是因为uft8格式和gbk格式的二进制数据混着写了~~</p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">阮一峰这篇博客讲的不错，还讲了utf8怎么编码</a><br/>
+<a href="https://docs.python.org/2/howto/unicode.html">python howto unicode 讲的很清楚</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python导入的路径，绝对导入，相对导入]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-%2Cjue-dui-dao-ru-%2Cxiang-dui-dao-ru/"/>
+    <updated>2014-08-26T22:39:03+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/08/26/pythondao-ru-de-lu-jing-,jue-dui-dao-ru-,xiang-dui-dao-ru</id>
+    <content type="html"><![CDATA[<p><strong>首先要区分的是两种导入：</strong><br/>
+1.  包内导入<br/>
+2.  在python yourcode 运行时导入 我把这个命名为“直接导入”<br/>
+相对导入，绝对导入这些概念仅作用于包内导入</p>
+
+<p>不管哪种导入python需要找到它们<br/>
+python模块导入时的搜索路径：<br/>
+1.   程序主目录，执行程序是包含执行代码文件的目录，交互模式下为当前工作目录,优先级最高<br/>
+2.   PYTHONPATH中的目录<br/>
+3.   标准链接库目录，就是python的安装目录，源码在里面<br/>
+4.   3.x 中可以用.pth 文件</p>
+
+<p>这些构成了sys.path。你写的模块存储路径在sys.path 里面就可以import。
+由于搜索路径有先后顺序，所以前面同名的模块容易“挡住”后面的模块<br/>
+比如dir0目录内有main.py和string.py两个文件，在main.py里面导入string：</p>
+
+<blockquote><p>目录结构<br/>
+dir0:<br/>
+&mdash;&mdash;main.py <br/>
+&mdash;&mdash;string.py</p></blockquote>
+
+<pre><code>#string.py代码:
+print 'importing string'
+AAA = 10
+
+#main.py 代码
+import string
+print '****in main****'
+print dir(string)
+</code></pre>
+
+<p>这时候在dir0目录下运行<code>python main.py</code></p>
+
+<pre><code>[zhu@zhu dir0]$ python main.py
+importing string
+****in main****
+['AAA', '__builtins__', '__doc__', '__file__', '__name__', '__package__']
+</code></pre>
+
+<p>明显导入了主目录的string而没有导入标准库的，因为导入的时候主目录优先级高 <br/>
+可以尝试换一个目录执行main.py把sys.path打印出来。能看到sys.path第一个目录就是“盛住”main.py的目录
+所以自己写模块的起名要小心，不要覆盖了标准库</p>
+
+<h4>包内导入</h4>
+
+<p>包是python组织代码的方式，如果一个目录下有<strong>init</strong>.py文件，python就会认为这是一个package。
+如果这个目录的上一级目录在sys.path里面，这个目录下的py文件以及子目录（必须有<strong>init</strong>.py) 下的文件就可以被python 导入了</p>
+
+<pre><code>import dir0.dir1.mod
+import dir0.dir1.dir2.mod
+</code></pre>
+
+<p>在python2.6及以前，在一个包内导入相同目录下的模块优先级最高，享受直接导入的主目录下的待遇.
+但是这时候我要导入标准库的同名模块，不要导入“同包”的模块怎么办？<br/>
+python3.0开始包内导入默认实行绝对导入，即在dir0.dir1的py文件里面执行<code>import string</code>不考虑“同包”的string模块<br/>
+如果要导入同包的string用明确的 from . import string语法，这样能精确控制了。 <br/>
+2.5-2.7可以通过from <strong>future</strong> import absolute_import 改变包导入的行为为绝对导入<br/>
+写代码测试一下，先把dir0放到PYTHONPATH里面<code>export PYTHONPATH=/home/zhu/study/learn/package/dir0/</code><br/>
+测试包导入的目录结构：</p>
+
+<blockquote><p>dir0:<br/>
+&mdash;&mdash;dir1:<br/>
+&mdash;&mdash;&mdash;&mdash;__init__.py<br/>
+&mdash;&mdash;&mdash;&mdash;mod.py <br/>
+&mdash;&mdash;&mdash;&mdash;string.py</p></blockquote>
+
+<pre><code># mod.py
+from __future__ import absolute_import 
+print '----in dir0.mod----'
+import string
+print dir(string)
+</code></pre>
+
+<p>在自己的home目录下写一个导入dir1.mod 的测试代码test_import.py</p>
+
+<pre><code>import dir1.mod
+</code></pre>
+
+<p>代码<code>python test_import.py</code>运行结果：</p>
+
+<pre><code>[zhu@zhu ~]$ python test_import.py
+----in dir0.mod----
+['Formatter', 'Template', '_TemplateMetaclass', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '_float', '_idmap', '_idmapL', '_int', '_long', '_multimap', '_re', 'ascii_letters', 'ascii_lowercase', 'ascii_uppercase', 'atof', 'atof_error', 'atoi', 'atoi_error', 'atol', 'atol_error', 'capitalize', 'capwords', 'center', 'count', 'digits', 'expandtabs', 'find', 'hexdigits', 'index', 'index_error', 'join', 'joinfields', 'letters', 'ljust', 'lower', 'lowercase', 'lstrip', 'maketrans', 'octdigits', 'printable', 'punctuation', 'replace', 'rfind', 'rindex', 'rjust', 'rsplit', 'rstrip', 'split', 'splitfields', 'strip', 'swapcase', 'translate', 'upper', 'uppercase', 'whitespace', 'zfill']
+</code></pre>
+
+<p>明显是标准库里的string</p>
+
+<p>修改dir1.dir0.mod.py:</p>
+
+<pre><code># mod.py
+from __future__ import absolute_import 
+print '----in dir0.mod----'
+from . import string
+print dir(string)
+</code></pre>
+
+<p>这时候的输出：</p>
+
+<pre><code>----in dir0.mod----
+imporing string
+['AAA', '__builtins__', '__doc__', '__file__', '__name__', '__package__']
+</code></pre>
+
+<p>这时候导入了包内的string</p>
+
+<p>还有相对导入不能放到直接运行的代码中，如果执行<code>python dir1/mod.py</code>会得到：</p>
+
+<pre><code>----in dir0.mod----
+Traceback (most recent call last):
+  File "dir1/mod.py", line 4, in &lt;module&gt;
+  from . import string
+ValueError: Attempted relative import in non-package
+</code></pre>
+
+<p>如果要测试有相对导入的模块可以用<code>python -m yourmod</code>。</p>
+
+<p>困惑我最久的就是包导入和普通导入的区分</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql开启访问日志]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi/"/>
+    <updated>2014-03-15T21:31:21+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/03/15/mysqlkai-qi-fang-wen-ri-zhi</id>
+    <content type="html"><![CDATA[<p>想看django ORM 访问数据的时候执行了什么sql，以为打开访问日志很简单。就是个开关吗。没想到挺折腾。</p>
+
+<p>mysql版本是</p>
+
+<pre><code>Server version: 5.1.69-log Source distribution
+</code></pre>
+
+<p>首选配置 /etc/my.cnf</p>
+
+<pre><code>general_log=1
+general_log_file=/var/log/mysql/query.log
+log-output=FILE
+</code></pre>
+
+<p>general_log也可以写成log，但是这样在mysql的error.log 里面会有一warning  说这个deprecated。
+这error log  就是默认开启的mysqld.log，是不靠谱的，我配置完general.log，其实这个文件并不存在的时候
+它就不报错了！！等我配置好，重启mysqld，用python做一个查询，
+满心欢喜的去看query.log 的时候毛都没有。 文件没创建。不像mysqld.log是mysql的自己创建的。
+需要自己建立这个日志文件（在my.cnf里面配置的)，并把所有者改成mysql.</p>
+
+<pre><code>touch /var/log/mysql.general.log
+chown mysql.mysql /var/log/mysql.general.log
+</code></pre>
+
+<p>再次查询，终于看到mysql查询日志了~~</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何安装包到指定版本的python]]></title>
+    <link href="http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python/"/>
+    <updated>2014-02-23T15:35:24+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2014/02/23/ru-he-an-zhuang-bao-dao-zhi-ding-ban-ben-de-python</id>
+    <content type="html"><![CDATA[<p>在centos6.3下装了python2.7.3 系统自带python2.6。</p>
+
+<pre><code>[zhu@star sf]$ which pip
+/usr/local/bin/pip
+[zhu@star sf]$ sudo which pip
+/usr/bin/pip
+[zhu@star sf]$ which python
+/usr/local/bin/python
+[zhu@star sf]$ sudo which python
+/usr/bin/python
+</code></pre>
+
+<p>用which命令看到sudo后的pip已经不是我们想用的pip了。如果sudo pip install 会直接安装2.6中。要想装包到2.7中其实很简单： <em>用绝对路径</em></p>
+
+<pre><code>[zhu@star sf]$ sudo /usr/local/bin/pip install requests 
+Downloading/unpacking requests
+Downloading requests-2.2.1-py2.py3-none-any.whl (625kB): 625kB downloaded
+Installing collected packages: requests
+Successfully installed requests
+Cleaning up...
+[zhu@star sf]$ pip show requests
+---
+Name: requests
+Version: 2.2.1
+Location: /usr/local/lib/python2.7/site-packages
+Requires:
+</code></pre>
+
+<p>从pip show 的信息中看出requests 这个包已经装入到2.7的目录了。</p>
+
+<p>如果想要明确的指定装包到2.6还有一个pip2.6，只需要用pip2.6替代pip就把包装入py2.6了</p>
+
+<pre><code>[zhu@star sf]$ which pip2.6
+/usr/bin/pip2.6
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Gitpage 搭建博客后远程协作]]></title>
+    <link href="http://zhentuy.github.io/blog/2013/12/17/cowork/"/>
+    <updated>2013-12-17T00:25:26+08:00</updated>
+    <id>http://zhentuy.github.io/blog/2013/12/17/cowork</id>
+    <content type="html"><![CDATA[<p>在费了九牛二虎之力后，终于用octopress在github上搭建起blog了。</p>
+
+<p>学人家push source  分支到github。这样在另外一台电脑上，只要从github上pull下来就能写作了。
+写完rake generate 正常。<code>rake  deploy</code> * 木有 _deploy目录*</p>
+
+<p>新建一个，rake deploy 报错“找不到git文件”。肿么回事在家push  source 的时候忘 push <em>deploy 了？
+vi .gitignore 发现</em>deploy 目录竟然在里面！octopress不想把_deploy纳入版本库中。</p>
+
+<p>回家后观察了rake deply 的过程，是把<em>deploy 目录当成推送到你博客repo的基站了。</em>deploy 目录下有一个.git目录。</p>
+
+<pre><code>   [zhu@localhost _deploy]$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:zhentuy/zhentuy.github.io.git
+  Push  URL: git@github.com:zhentuy/zhentuy.github.io.git
+  HEAD branch: master
+  Remote branches:
+    master tracked
+    source tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date) 
+</code></pre>
+
+<p>这个指向你在github博客repo  master分支。跟上一层目录的master分支是一样的。所以你在别的机器上
+pull 的时候。pull完source分支  在把 master 分支pull 下来 放入_deploy 分支里就能rake new_post 了。</p>
+
+<pre><code>git clone git@github.com:zhentuy/zhentuy.github.io.git _deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
